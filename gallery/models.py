@@ -25,7 +25,7 @@ class Gallery(models.Model):
         allow_file_upload=True,
         allow_image_upload=True,
         verbose_name='Фото-Отчет',null=True)
-    date = models.DateTimeField(blank=True, null=True, auto_now_add=True)
+    date = models.DateTimeField(blank=True, null=True, auto_now=True)
 
     def __unicode__(self):
         return self.name
