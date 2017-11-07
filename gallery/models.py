@@ -32,13 +32,7 @@ class Gallery(models.Model):
         return self.name
 
     def get_time(self):
-        now = datetime.datetime.now()
-        if date(now, 'Y.m.d') == date(self.updated, 'Y.m.d'):
-            return date(self.updated + datetime.timedelta(hours=6), 'Бүгүн - H:i')
-        elif date(now - datetime.timedelta(days=1), 'Y.m.d') == date(self.updated, 'Y.m.d'):
-            return 'Кечээ - %s' % date(self.updated + datetime.timedelta(hours=6), 'H:i')
-        else:
-            return date(self.updated, 'Y.m.d - H:i')
+        return date(self.updated, 'Y.m.d - H:i')
 
     def get_date(self):
         return self.date
