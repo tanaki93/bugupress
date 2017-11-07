@@ -46,9 +46,9 @@ class Category(models.Model):
 
     def get_all(self):
         s = []
-        for i in self.article_set.filter(published=True)[0:3]:
+        for i in self.article_set.filter(published=True)[0:4]:
             s.append(i)
-        for i in self.news_set.filter(published=True)[0:6]:
+        for i in self.news_set.filter(published=True)[0:4]:
             s.append(i)
         o = tuple(sorted(s, key=attrgetter('date'), reverse=True))
         return o
