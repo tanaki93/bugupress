@@ -50,7 +50,7 @@ class Category(models.Model):
             s.append(i)
         for i in self.news_set.filter(published=True)[0:4]:
             s.append(i)
-        o = tuple(sorted(s, key=attrgetter('date'), reverse=True))
+        o = tuple(sorted(s, key=attrgetter('date'), reverse=True))[0:4]
         return o
 
 
