@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 import datetime
 from django.db import models
+from django.template.defaultfilters import date
 
 # Create your models here.
 from redactor.fields import RedactorField
@@ -47,9 +48,7 @@ class Gallery(models.Model):
 
     def save(self, *args, **kwargs):
         self.formatted_date = self.get_time()
-        self.api_category = self.category.name
-        self.api_type = self.type
-        super(Article, self).save()
+        super(Gallery, self).save()
 
 
 class Video(models.Model):
