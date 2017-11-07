@@ -1,0 +1,286 @@
+{% extends 'index.html' %}
+{% block title %}Башкы бет{% endblock %}
+{% block description %}Bugupress - Жаңылыктары{% endblock %}
+{% block keywords %}Кыргызстан, жаңылык, Бишкек{% endblock %}
+{% load staticfiles %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12" style="margin-bottom: 15px;">
+            <div class="row">
+                {% if ad1 %}
+                    <a href="{{ ad1.link }}" target="_blank">
+                        <img class="center-block img-responsive" src="{{ ad1.image.url }}" alt=""
+                             style="height: 160px;">
+                    </a>
+                {% else %}
+                    <div class="ad2">
+                        <div class="text-center">Сиздин жарнамаңыз үчүн (fullx160) <br> 0555 03 33 11</div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="news-carousel col-md-6">
+                            {% for i in kabar %}
+                                <div class="carousel-cell">
+                                    <a class="" href="/article/{{ i.id }}/">
+                                        <article>
+                                            <div class="maincover" style="background-image: url({{ i.image.url }});">
+                                                <div class="static-banner">
+                                                    <h5>Эң маанилүү</h5>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h6>
+                                                    {{ i.title }}
+                                                </h6>
+                                            </div>
+                                        </article>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                        <div class="info-carousel col-md-6">
+                            {% for i in infographics %}
+                                <div class="carousel-cell">
+                                    <a href="/article/{{ i.id }}/">
+                                        <article>
+                                            <div class="infographcover"
+                                                 style="background-image: url({{ i.image.url }})">
+                                                <div class="static-banner">
+                                                    <h5>инфографика</h5>
+                                                </div>
+                                            </div>
+                                            <h6>
+                                                {{ i.title }}
+                                            </h6>
+                                        </article>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+
+                        <div class="opinions col-sm-12" style="padding-top: 25px; padding-bottom: 25px;">
+                            <h5>Ой-пикир</h5>
+                            <div class="row">
+                                {% for opinion in opinions %}
+                                    <a class="col-sm-4 col-xs-12" href="opinion/{{ opinion.id }}">
+                                        <article class="opinion">
+                                            <div class="opinion-man">
+                                                <div class="face"
+                                                     style="background-image: url('{{ opinion.author.image.url }}')">
+                                                </div>
+                                                <h6>
+                                                    {{ opinion.author }}
+                                                    <div>
+                                                        {{ opinion.title|safe }}
+                                                    </div>
+                                                </h6>
+                                            </div>
+
+                                        </article>
+                                    </a>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12" style="margin-bottom: 25px;">
+            <div class="row">
+                <div class="static-banner">
+                    <h5>Фоторепортаж</h5>
+                </div>
+                <div class="main-carousel">
+                    {% for i in gallery %}
+                        <div class="carousel-cell gallery-cell" style="background-image: url('{{ i.image.url }}');">
+                            <a href="/photos/{{ i.id }}/">
+                                <div class="col-xs-12">
+                                    <h1>{{ i.name }}</h1>
+                                    {#                                    <span>{{ i.get_date }}</span>#}
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="row">
+                {% if ad2 %}
+                    <a href="{{ ad2.link }}" target="_blank">
+                        <img class="center-block img-responsive" src="{{ ad2.image.url }}" alt=""
+                             style="height: 160px;">
+                    </a>
+                {% else %}
+                    <div class="ad2">
+                        <div class="text-center">Сиздин жарнамаңыз үчүн (fullx160) <br> 0555 03 33 11</div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% for i in categories %}
+            <section class="col-xs-12 category-section">
+                <h1><a href="/category/{{ i.id }}/">{{ i.name }}</a></h1>
+                <div class="row">
+                    <div class="category-wrapper">
+                        {% for j in i.get_articles %}
+                            <a class="col-lg-3 col-md-3 col-sm-6 col-xs-12" href="/article/{{ j.id }}/">
+                                <article>
+                                    {% if j.image %}
+                                        <div class="cover" style="background-image: url({{ j.image.url }})">
+
+                                        </div>
+                                    {% endif %}
+
+                                    <div>
+                                        <div class="meta">
+                                            <time>{{ j.get_time }}</time>
+                                            <span><i class="fa fa-eye"></i> {{ j.rating }}</span>
+                                        </div>
+                                        <h6>
+                                            {{ j.title }}
+                                        </h6>
+                                    </div>
+                                </article>
+                            </a>
+                        {% endfor %}
+                        {% for j in i.get_news %}
+                            <a class="col-lg-3 col-md-3 col-sm-6 col-xs-12" href="/kabar/{{ j.id }}/">
+                                <article>
+
+                                    {% if j.image %}
+                                        <div class="cover" style="background-image: url({{ j.image.url }})">
+
+                                        </div>
+                                    {% endif %}
+
+                                    <div>
+                                        <div class="meta">
+                                            <time>{{ j.get_time }}</time>
+                                            <span><i class="fa fa-eye"></i> {{ j.rating }}</span>
+                                        </div>
+                                        <h6>
+                                            {{ j.title }}
+                                        </h6>
+                                    </div>
+                                </article>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
+        <div class="col-xs-12">
+            <div class="row">
+                {% if ad5 %}
+                    <a href="{{ ad5.link }}" target="_blank">
+                        <img class="center-block img-responsive" src="{{ ad5.image.url }}" alt=""
+                             style="height: 160px;">
+                    </a>
+                {% else %}
+                    <div class="ad2">
+                        <div class="text-center">Сиздин жарнамаңыз үчүн (fullx160) <br> 0555 03 33 11</div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% for i in categories2 %}
+            <section class="col-xs-12 category-section">
+                <h1><a href="/category/{{ i.id }}/">{{ i.name }}</a></h1>
+                <div class="row">
+                    <div class="category-wrapper">
+                        {% for j in i.get_articles %}
+                            <a class="col-lg-3 col-md-3 col-sm-6 col-xs-12" href="/article/{{ j.id }}/">
+                                <article>
+                                    {% if j.image %}
+                                        <div class="cover" style="background-image: url({{ j.image.url }})">
+
+                                        </div>
+                                    {% endif %}
+
+                                    <div>
+                                        <div class="meta">
+                                            <time>{{ j.get_time }}</time>
+                                            <span><i class="fa fa-eye"></i> {{ j.rating }}</span>
+                                        </div>
+                                        <h6>
+                                            {{ j.title }}
+                                        </h6>
+                                    </div>
+                                </article>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <div class="category-wrapper">
+                        {% for j in i.get_news %}
+                            <a class="col-lg-3 col-md-3 col-sm-6 col-xs-12" href="/kabar/{{ j.id }}/">
+                                <article>
+
+                                    {% if j.image %}
+                                        <div class="cover" style="background-image: url({{ j.image.url }})">
+
+                                        </div>
+                                    {% endif %}
+
+                                    <div>
+                                        <div class="meta">
+                                            <time>{{ j.get_time }}</time>
+                                            <span><i class="fa fa-eye"></i> {{ j.rating }}</span>
+                                        </div>
+                                        <h6>
+                                            {{ j.title }}
+                                        </h6>
+                                    </div>
+                                </article>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            $('.main-carousel').flickity({
+                // options
+                cellAlign: 'left',
+                contain: true,
+                autoPlay: false,
+                wrapAround: true,
+                pageDots: true,
+                prevNextButtons: false
+            });
+            $('.news-carousel').flickity({
+                // options
+                cellAlign: 'left',
+                contain: true,
+                autoPlay: false,
+                wrapAround: true,
+                pageDots: true,
+                prevNextButtons: false
+            });
+            $('.info-carousel').flickity({
+                // options
+                cellAlign: 'left',
+                contain: true,
+                autoPlay: false,
+                wrapAround: true,
+                pageDots: true,
+                prevNextButtons: false
+            });
+        });
+    </script>
+{% endblock %}

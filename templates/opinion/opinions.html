@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% block title %}Ой-пикир{% endblock %}
+{% load staticfiles %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Ой-пикир</h1>
+            <div class="row">
+                <div class="category-wrapper">
+                    {% for opinion in opinions %}
+                        <a class="col-lg-3 col-md-3 col-sm-6 col-xs-12" href="/opinion/{{ opinion.id }}">
+                            <article class="opinion">
+                                <div class="opinion-man">
+                                    <div class="face"
+                                         style="background-image: url('{{ opinion.author.image.url }}')">
+                                    </div>
+                                    <h6>
+                                        {{ opinion.author.name }}
+                                        <br>
+                                        <small>{{ opinion.author.about }}</small>
+                                    </h6>
+                                </div>
+                                <div class="meta">
+                                    <time>{{ opinion.get_time }}</time>
+                                    <span><i class="fa fa-eye"></i> {{ opinion.rating }}</span>
+                                </div>
+                                <p>{{ opinion.title }}</p>
+                                <span>{{ opinion.category }}</span>
+                            </article>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

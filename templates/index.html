@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %} | BUGUPRESS</title>
+    <meta name="department" content="legal"/>
+    <meta name="audience" content="all"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="author" content="{% block author %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    <meta property="og:title" content="{% block title_og %}{% endblock %}"/>
+    <meta property="og:description" content="{% block description_og %}{% endblock %}"/>
+    <meta property="og:image" content="http://{{ request.get_host }}{% block image_og %}{% endblock %}"/>
+    <meta property="og:url" content="http://{{ request.get_host }}{% block url_og %}{% endblock %}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:site_name" content="BuguPress"/>
+    <meta property="fb:app_id" content="765014293659072"/>
+    <meta name="twitter:title" content="{% block title_twitter %}{% endblock %}">
+    <meta name="twitter:description" content="{% block description_twitter %}{% endblock %}">
+    <meta name="twitter:image" content="http://{{ request.get_host }}{% block image_twitter %}{% endblock %}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@bugupress">
+    <meta name="twitter:creator" content="{% block author_twitter %}{% endblock %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    {% load staticfiles %}
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'dist/favicon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'dist/favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'dist/favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'dist/favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'dist/favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'dist/favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'dist/favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'dist/favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'dist/favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'dist/favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'dist/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'dist/favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'dist/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'dist/favicon/manifest.json' %} ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'dist/css/vendor/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/vendor/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/vendor/perfect-scrollbar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/vendor/trumbowyg.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/vendor/social-share-kit.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/vendor/flickity.min.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i|PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext"
+          rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'dist/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/aside.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/article.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/news.css' %}">
+    <link rel="stylesheet" href="{% static 'dist/css/opinion.css' %}">
+
+</head>
+<body>
+<header>
+    <div class="nav_top">
+        <div class="nav_head">
+            <button class="hidden-md hidden-lg btn btn-default nav_head_news" id="showNews"><i
+                    class="fa fa-newspaper-o"></i></button>
+            <a class="index" href="/">
+                <img class="nav_head_logo" src="{% static 'small4.png' %}" alt="">
+                <img class="nav_head_logo2" src="{% static 'small.png' %}" alt="">
+            </a>
+            <a href="#" class="btn btn-default nav_head_button" data-toggle="collapse"#}
+               data-target="#bs-example-navbar-collapse-1" aria-expanded="false"><i class="fa fa-bars"></i></a>
+        </div>
+
+    </div>
+    <div class="nav_bottom">
+        <nav class="main-navigation">
+            <ul class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <li><a href="/world/">Дүйнө</a></li>
+                <li><a href="/kyrgyzstan/">Кыргызстан</a></li>
+                <li><a href="/opinions/">Ой-пикир</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Bugu TV</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/gallery/">ФОТОРЕПОРТАЖ</a></li>
+                        <li><a href="/multimedia/">Видео</a></li>
+                        <li><a href="/infographics/">Инфографика</a></li>
+                    </ul>
+                </li>
+                <li class="balastan"><a href="http://balastan.com/" target="_blank">Баластан</a></li>
+                <li class="shookum"><a href="http://shookum.kg/" target="_blank">Шоокум</a></li>
+                <li class="visible-xs"><a href="/submitstory/">Жаңылык жаз</a></li>
+                <div class="col-xs-12 text-center visible-xs">
+                    <a href="https://play.google.com/store/apps/details?id=com.pixelkalpak.tanaki.bugu" target="_blank" class="btn btn-default tell-news"
+                       style="display: block; margin-bottom: 15px"><i
+                            class="fa fa-android"></i><span class=""> Google Play</span></a>
+                    <a href="/submitstory/" class="btn btn-default tell-news"
+                       style="display: block; margin-bottom: 15px"><i
+                            class="fa fa-pencil"></i><span class=""> Жаңылык жаз</span></a>
+                </div>
+            </ul>
+        </nav>
+        <div class="nav_right hidden-xs">
+            <a class="icon" href="/submitstory/" title="Жаңылык жаз">
+                <span class="icon-label hidden-md hidden-sm hidden-xs">Жаңылык жаз</span>
+                <div class="icon-circle">
+                    <i class="fa fa-pencil"></i>
+                </div>
+
+            </a>
+            <a class="icon" href="/search/" title="Издөө">
+                <div class="icon-circle">
+                    <i class="fa fa-search"></i>
+                </div>
+            </a>
+            <a class="icon" target="_blank" href="https://play.google.com/store/apps/details?id=com.pixelkalpak.tanaki.bugu" title="Android тиркемеси">
+                <div class="icon-circle">
+                    <i class="fa fa-android"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+</header>
+<aside class="news-stream">
+    <h5 class="news-stream-title">Акыркы Жаңылыктар</h5>
+    {% for i in everything %}
+        {% if i.is_article == True %}
+            <a href="/article/{{ i.id }}/">
+        {% elif i.is_opinion == True %}
+            <a href="/opinion/{{ i.id }}/">
+        {% else %}
+            <a href="/kabar/{{ i.id }}/">
+        {% endif %}
+    <article>
+        <div class="meta">
+            <time>{{ i.get_time }}</time>  <span><i class="fa fa-eye"></i> {{ i.rating }}</span>
+        </div>
+        {% if i.is_opinion == True %}
+            <div class="opinionist">
+                <div class="opinionist__face" style="background-image: url('{{ i.author.image.url }}')"></div>
+                <span><b>{{ i.author.name }}</b></span>
+            </div>
+        {% endif %}
+        <h6>
+            {{ i.title }}
+        </h6>
+    </article>
+    </a>
+    {% endfor %}
+</aside>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+<footer>
+    <div class="row">
+        <div class="col-sm-6">
+
+            <p class="text-center" style="margin-bottom: 0">
+                <img src="{% static 'dist/footerlogo.png' %}" height="150px" alt="">
+            </p>
+            <h6 class="text-center" style="margin-top: 0">
+                &copy; BUGUPRESS &mdash; 2017
+            </h6>
+            <p class="text-center">
+                <a class="android" href="https://www.facebook.com/Bugupress-1336733023106890/" title="Facebook"
+                   target="_blank">
+            <span class="fa-stack fa-sm">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+            </span>
+                </a>
+                <a class="android" href="https://twitter.com/bugupress" title="Twitter" target="_blank">
+            <span class="fa-stack fa-sm">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+            </span>
+                </a>
+                <a class="android" href="https://www.youtube.com/channel/UCTR9Bb01dwZFEvph3gYNEXQ" title="YouTube"
+                   target="_blank">
+            <span class="fa-stack fa-sm">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+            </span>
+                </a>
+                <a class="android" href="https://www.instagram.com/bugupress/" title="Instagram" target="_blank">
+            <span class="fa-stack fa-sm">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+            </span>
+                </a>
+            </p>
+        </div>
+        <div class="col-sm-6">
+            <h6><b>БИЗДИН ДАРЕК:</b></h6>
+            <h6>
+                Кыргыз Республикасы <br>
+                Бишкек шаары <br>
+                Фрунзе көчөсү 387, 1-кабат</h6>
+            <h6><b>ТЕЛЕФОН:</b></h6>
+            <h6>+996 (312) 68 07 34</h6>
+            <!-- WWW.NET.KG , code for http://bugupress.kg -->
+            <script language="javascript" type="text/javascript">
+                java = "1.0";
+                java1 = "" + "refer=" + escape(document.referrer) + "&amp;page=" + escape(window.location.href);
+                document.cookie = "astratop=1; path=/";
+                java1 += "&amp;c=" + (document.cookie ? "yes" : "now");
+            </script>
+            <script language="javascript1.1" type="text/javascript">
+                java = "1.1";
+                java1 += "&amp;java=" + (navigator.javaEnabled() ? "yes" : "now");
+            </script>
+            <script language="javascript1.2" type="text/javascript">
+                java = "1.2";
+                java1 += "&amp;razresh=" + screen.width + 'x' + screen.height + "&amp;cvet=" +
+                    (((navigator.appName.substring(0, 3) == "Mic")) ?
+                        screen.colorDepth : screen.pixelDepth);
+            </script>
+            <script language="javascript1.3" type="text/javascript">java = "1.3"</script>
+            <script language="javascript" type="text/javascript">
+                java1 += "&amp;jscript=" + java + "&amp;rand=" + Math.random();
+                document.write("<a href='https://www.net.kg/stat.php?id=5767&amp;fromsite=5767' target='_blank'>" +
+                    "<img src='https://www.net.kg/img.php?id=5767&amp;" + java1 +
+                    "' border='0' alt='WWW.NET.KG' width='88' height='31' /></a>");
+            </script>
+            <noscript>
+                <a href='https://www.net.kg/stat.php?id=5767&amp;fromsite=5767' target='_blank'><img
+                        src="https://www.net.kg/img.php?id=5767" border='0' alt='WWW.NET.KG' width='88'
+                        height='31'/></a>
+            </noscript>
+            <!-- /WWW.NET.KG -->
+            <a href="https://play.google.com/store/apps/details?id=com.pixelkalpak.tanaki.bugu">
+                <img src="{% static 'gp.png' %}" alt="" height="50px;">
+            </a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript" src="{% static 'dist/js/jquery-2.2.4.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'dist/js/jquery.fitvids.js' %}"></script>
+<script type="text/javascript" src="{% static 'dist/js/masonry.pkgd.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'dist/js/perfect-scrollbar.jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'dist/js/trumbowyg.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'dist/js/social-share-kit.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'dist/js/flickity.pkgd.min.js' %}"></script>
+<script type="text/javascript">
+    SocialShareKit.init();
+</script>
+<script type="text/javascript">
+
+</script>
+                <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-105259973-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script type="text/javascript">
+
+    $(function () {
+        $('aside').perfectScrollbar();
+        $('[data-toggle="tooltip"]').tooltip()
+        $(".dropdown").hover(
+            function () {
+                $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");
+            },
+            function () {
+                $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");
+            });
+    });
+    $("#showNews, #showNews2").click(function () {
+        $("aside").toggleClass("xs-shown");
+    });
+
+</script>
+{% block script %}
+
+{% endblock %}
+</body>
+</html>

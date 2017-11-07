@@ -1,0 +1,156 @@
+{% extends 'index.html' %}
+{% block title %}{{ article.title }}{% endblock %}
+{% block description %}{{ article.body|striptags|slice:":160" }}{% endblock %}
+{% block keywords %}{{ article.keys }}{% endblock %}
+{% block author %}{{ article.author.name }}{% endblock %}
+{% block title_og %}{{ article.title }}{% endblock %}
+{% block description_og %}{{ article.body|striptags|slice:":160" }}{% endblock %}
+{% block image_og %}{{ article.image.url }}{% endblock %}
+{% block url_og %}/article/{{ article.id }}{% endblock %}
+{% block title_twitter %}{{ article.title }}{% endblock %}
+{% block description_twitter %}{{ article.body|striptags|slice:":160" }}{% endblock %}
+{% block image_twitter %}{{ article.image.url }}{% endblock %}
+{% block author_twitter %}{{ article.author.name }}{% endblock %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="row">
+        <article class="article">
+            <div class="col-md-12" style="margin-bottom: 45px;">
+                <div class="row">
+                    <div class="articlecover" style="background-image: url('{{ article.image.url }}');">
+                        <div class="articleinformation">
+                            <div class="inner hidden-xs">
+                                <span class="category" style="color: white">{{ article.category.name }}</span>
+                                <time datetime="">{{ article.get_time }}</time>
+                                <span class="category" style="color: white"><i
+                                        class="fa fa-eye"></i> {{ article.rating }}</span>
+                                <h1>{{ article.title }}</h1>
+                                {% if article.author %}
+                                    <div class="opinion-man">
+                                        <div class="face"
+                                             style="background-image: url('{{ article.author.image.url }}')">
+                                        </div>
+                                        <h6>
+                                            {{ article.author }}
+                                            <br>
+                                            <small>{{ article.author.about }}</small>
+                                        </h6>
+                                    </div>
+                                {% endif %}
+                                <div class="ssk-group" data-title="{{ article.title }}" data-text="">
+                                    <a href="" class="ssk ssk-facebook"></a>
+                                    <a href="" class="ssk ssk-twitter"></a>
+                                    <a href="" class="ssk ssk-google-plus"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="visible-xs">
+                    <span class="category">{{ article.category.name }}</span>
+                    <time datetime="">{{ article.date }}</time>
+                    <span>{{ article.date }}</span>
+                    <h1>{{ article.rating }}</h1>
+                    <div class="opinion-man">
+                        <div class="face"
+                             style="background-image: url('{{ article.author.image.url }}')">
+                        </div>
+                        <h6>
+                            {{ article.author }}
+                            <br>
+                            <small>{{ article.author.about }}</small>
+                        </h6>
+                    </div>
+                    <div class="ssk-group" data-title="{{ article.title }}" data-text="">
+                        <a href="" class="ssk ssk-facebook"></a>
+                        <a href="" class="ssk ssk-twitter"></a>
+                        <a href="" class="ssk ssk-google-plus"></a>
+                    </div>
+                </div>
+                {{ article.body|safe }}
+                {% load widget_tweaks %}
+
+                <form method="POST" style="margin-bottom: 25px;">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Атыңыз</label>
+                        {{ form.author|add_class:"form-control"|attr:"required: required" }}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Пикириңиз</label>
+                        {{ form.text|add_class:"form-control"|attr:"required: required" }}
+                    </div>
+                    <button type="submit" class="save btn btn-default">Сактоо</button>
+                </form>
+                <div class="comments">
+                    {% for comment in comments %}
+                        <h5>{{ comment.author }}</h5>
+                        <h6>
+                            <small>{{ comment.get_time }}</small>
+                        </h6>
+                        <p>{{ comment.text }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-3">
+                {% if ad3 %}
+                    <a href="{{ ad3.link }}" target="_blank">
+                        <img class="img-center img-responsive" src="{{ ad3.image.url }}" alt="">
+                    </a>
+                {% else %}
+                    <div class="ad1">
+                        <div class="text-center">Сиздин жарнамаңыз үчүн (233x330) <br> 0555 03 33 11</div>
+                    </div>
+                {% endif %}
+                <br>
+                {% if ad4 %}
+                    <a href="{{ ad4.link }}" target="_blank">
+                        <img class="img-center img-responsive" src="{{ ad4.image.url }}" alt="">
+                    </a>
+                {% else %}
+                    <div class="ad1">
+                        <div class="text-center">Сиздин жарнамаңыз үчүн (233x330) <br> 0555 03 33 11</div>
+                    </div>
+                {% endif %}
+            </div>
+        </article>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="category-wrapper">
+                    {% for i in other %}
+                        {% if i.is_article %}
+                            <a class="col-md-3" href="/article/{{ i.id }}/">
+                        {% else %}
+                            <a class="col-md-3" href="/kabar/{{ i.id }}/">
+                        {% endif %}
+                    <article>
+                        <div class="cover" style="background-image: url({{ i.image.url }})">
+                        </div>
+                        <div>
+
+                            <div class="meta">
+                                <time>{{ i.get_time }}</time>
+                                <span><i class="fa fa-eye"></i> {{ i.rating }}</span>
+                            </div>
+                            <h6>
+                                {{ i.title }}
+                            </h6>
+                        </div>
+                    </article>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $('iframe[src*="youtube"]').parent().fitVids();
+    </script>
+{% endblock %}

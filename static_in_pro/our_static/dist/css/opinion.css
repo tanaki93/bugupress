@@ -1,0 +1,46 @@
+.opinion-man {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.opinion-man > h6 {
+    margin-left: 10px;
+    color: #000;
+}
+
+.article .opinion-man > h6 {
+    margin-left: 10px;
+    color: #fff;
+}
+.opinions .face{
+    min-width: 90px;
+    height: 90px;
+}
+
+.opinions .opinion-man h6 div{
+    margin-top: 5px;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.2;
+}
+
+.opinion-man > .face {
+    min-width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center center;
+}
+
+.opinion p {
+    border: 1px lightgray solid;
+    padding: 5px 10px;
+}
+
+article.opinion > span, article.opinion > span {
+    font-size: 13px;
+    color: gray;
+}
+
+.news .ssk-group {
+    margin-bottom: 15px;
+}

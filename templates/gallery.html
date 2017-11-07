@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% block title %}Фоторепортаж{% endblock %}
+{% load staticfiles %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Фоторепортаж</h1>
+            <div class="row">
+                <div class="category-wrapper">
+                    {% for j in gallery %}
+                        <a class="col-lg-3 col-md-3 col-sm-6 col-xs-12" href="/photos/{{ j.id }}/">
+                            <article>
+                                {% if j.image %}
+                                    <div class="cover" style="background-image: url({{ j.image.url }})">
+                                    </div>
+                                {% endif %}
+
+                                <div>
+                                    <h6>
+                                        {{ j.name }}
+                                    </h6>
+{#                                    <span><time>{{ j.get_date }}</time></span>#}
+
+                                </div>
+                            </article>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

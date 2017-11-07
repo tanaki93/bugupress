@@ -1,0 +1,133 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block title %}{{ opinion.title }}{% endblock %}
+{% block description %}{{ opinion.body|striptags|slice:":160" }}{% endblock %}
+{% block keywords %}{{ opinion.keys }}{% endblock %}
+{% block author %}{{ opinion.author.name }}{% endblock %}
+{% block title_og %}{{ opinion.title }}{% endblock %}
+{% block description_og %}{{ opinion.body|striptags|slice:":160" }}{% endblock %}
+{% block image_og %}{% static 'bugucover.png' %}{% endblock %}
+{% block url_og %}/opinion/{{ opinion.id }}{% endblock %}
+{% block title_twitter %}{{ opinion.title }}{% endblock %}
+{% block description_twitter %}{{ opinion.body|striptags|slice:":160" }}{% endblock %}
+{% block image_twitter %}{% static 'bugucover.png' %}{% endblock %}
+{% block author_twitter %}{{ opinion.author.name }}{% endblock %}
+{% block content %}
+    <main class="container-fluid">
+        <div class="row">
+            <article class="news">
+                <div class="col-md-12">
+                    <time datetime="">{{ opinion.get_time }}</time>
+                    <h1>{{ opinion.title }}</h1>
+                    <div class="opinion-man">
+                        <div class="face" style="background-image: url('{{ opinion.author.image.url }}')">
+                        </div>
+                        <h6>
+                            {{ opinion.author }}
+                            <br>
+                            <small>{{ opinion.author.about }}</small>
+                        </h6>
+                    </div>
+                    <div class="ssk-group" data-title="{{ opinion.title }}" data-text="">
+                        <a href="" class="ssk ssk-facebook"></a>
+                        <a href="" class="ssk ssk-twitter"></a>
+                        <a href="" class="ssk ssk-google-plus"></a>
+                    </div>
+
+                </div>
+                <div class="col-lg-9">
+                    {{ opinion.body|safe }}
+                    {% load widget_tweaks %}
+
+                    <form method="POST" style="margin-bottom: 25px;">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Атыңыз</label>
+                            {{ form.author|add_class:"form-control"|attr:"required: required" }}
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Пикириңиз</label>
+                            {{ form.text|add_class:"form-control"|attr:"required: required" }}
+                        </div>
+                        <button type="submit" class="save btn btn-default">Сактоо</button>
+                    </form>
+                    <div class="comments">
+                        {% for comment in comments %}
+                            <h5>{{ comment.author }}</h5>
+                            <h6>
+                                <small>{{ comment.time }}</small>
+                            </h6>
+                            <p>{{ comment.text }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    {% if ad3 %}
+                        <a href="{{ ad3.link }}">
+                            <img class="img-center img-responsive" src="{{ ad3.image.url }}" alt="">
+                        </a>
+                    {% else %}
+                        <div class="ad1">
+                            <div class="text-center">Сиздин жарнамаңыз үчүн (233x330) <br> 0555 03 33 11</div>
+                        </div>
+                    {% endif %}
+                    <br>
+                    {% if ad4 %}
+                        <a href="{{ ad4.link }}">
+                            <img class="img-center img-responsive" src="{{ ad4.image.url }}" alt="">
+                        </a>
+                    {% else %}
+                        <div class="ad1">
+                            <div class="text-center">Сиздин жарнамаңыз үчүн (233x330) <br> 0555 03 33 11</div>
+                        </div>
+                    {% endif %}
+                </div>
+            </article>
+            <div class="col-md-12">
+                <h1>{{ kabar.category.name }}</h1>
+                <div class="row">
+                    <div class="category-wrapper">
+                        {% for i in other %}
+                            {% if i.is_article %}
+                                <a class="col-md-3" href="/article/{{ i.id }}/">
+                            {% elif i.is_opinion %}
+                                <a class="col-md-3" href="/opinion/{{ i.id }}/">
+                            {% else %}
+                                <a class="col-md-3" href="/kabar/{{ i.id }}/">
+                            {% endif %}
+                        <article>
+                            <div class="cover">
+                                {% if i.image %}
+                                    <div class="cover" style="background-image: url({{ i.image.url }})">
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <span>{{ i.category.name }} - <time>{{ i.get_date }}</time></span>
+                                <h6>
+                                    {{ i.title }}
+                                </h6>
+                            </div>
+                        </article>
+                        </a>
+                        {% endfor %}
+                    </div>
+
+                </div>
+                <div class="read-more text-center">
+                    <a href="/category/{{ kabar.category_id }}/"
+                       class="btn tell-news btn-lg">{{ kabar.category.name }}</a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+{% block script %}
+    <script>
+        $('.category-wrapper').masonry({
+            itemSelector: 'a'
+        });
+        $('iframe[src*="youtube"]').parent().fitVids();
+    </script>
+
+{% endblock %}

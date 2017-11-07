@@ -1,0 +1,97 @@
+.news-stream {
+    background-color: #fff;
+    width: 250px;
+    float: left;
+    height: calc(100% - 121px);
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(177, 92, 40, 1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(177, 92, 40, 1);
+    box-shadow: 0px 0px 5px 0px rgba(177, 92, 40, 1);
+    border-right: #b15c28 1px solid;
+    transition: all 0.3s ease;
+    color: black;
+    position: fixed;
+    z-index: 3;
+    top: 121px;
+}
+
+.xs-shown {
+    margin-left: 0px;
+}
+
+.news-stream-title {
+    padding: 20px 25px;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 16px;
+    border-bottom: 1px #ddd solid;
+}
+
+.news-stream > a {
+    color: black;
+    display: block;
+    text-decoration: none;
+}
+
+.news-stream > a > article > h6 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 14px
+}
+
+.news-stream > a > article > .meta {
+    color: gray;
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.news-stream > a > article {
+    padding: 15px 25px;
+    border-bottom: 1px #ddd solid;
+    transition: all 0.2s ease;
+}
+
+.news-stream > a:hover, aside > a:focus {
+    color: #b15c28;
+    text-decoration: none;
+}
+
+.news-stream > a:hover > article > span, aside > a:focus > article > span {
+    font-size: 13px;
+}
+
+.news-stream > a:hover > article, aside > a:focus > article {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.news-stream > a:hover > article > h6, aside > a:focus > article > h6 {
+    margin: 0;
+    /*font-weight: 700;*/
+}
+
+.opinionist__face{
+    height: 50px;
+    width: 50px;
+    background-position: center center;
+    background-size: cover;
+    float: left;
+    margin-right: 10px;
+}
+
+@media (max-width: 991px) {
+    .xs-shown {
+        width: 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    .xs-shown {
+        width: 100%;
+    }
+
+    aside.news-stream {
+        height: calc(100% - 66px);
+        top: 66px;
+    }
+}

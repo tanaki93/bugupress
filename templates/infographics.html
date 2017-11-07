@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% block title %}Инфографика{% endblock %}
+{% load staticfiles %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Инфографика</h1>
+            <div class="row">
+                <div class="category-wrapper">
+                    {% for j in inplace %}
+                        {% if j.is_article == True %}
+                            <a class="col-lg-3 col-md-3 col-sm-6 col-xs-12" href="/article/{{ j.id }}/">
+                                <article>
+                                    {% if j.image %}
+                                        <div class="cover" style="background-image: url({{ j.image.url }})">
+                                        </div>
+                                    {% endif %}
+
+                                    <div>
+                                        <div class="meta">
+                                            <time>{{ j.get_time }}</time>
+                                            <span><i class="fa fa-eye"></i> {{ j.rating }}</span>
+                                        </div>
+                                        <h6>{{ j.title }}</h6>
+                                        <span>{{ j.category }}</span>
+                                    </div>
+                                </article>
+                            </a>
+                        {% else %}
+                            <a class="col-lg-3 col-md-3 col-sm-6 col-xs-12" href="/kabar/{{ j.id }}/">
+                                <article>
+
+                                    {% if j.image %}
+                                        <div class="cover" style="background-image: url({{ j.image.url }})">
+
+                                        </div>
+                                    {% endif %}
+
+                                    <div>
+                                        <div class="meta">
+                                            <time>{{ j.get_time }}</time>
+                                            <span><i class="fa fa-eye"></i> {{ j.rating }}</span>
+                                        </div>
+                                        <h6>{{ j.title }}</h6>
+                                        <span>{{ j.category }}</span>
+                                    </div>
+                                </article>
+                            </a>
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

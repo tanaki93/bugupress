@@ -1,0 +1,114 @@
+{% extends 'index.html' %}
+{% block title %}{{ kabar.title }}{% endblock %}
+{% block description %}{{ kabar.body|striptags|slice:":160" }}{% endblock %}
+{% block keywords %}{{ kabar.keys }}{% endblock %}
+{% block author %}{{ kabar.author.name }}{% endblock %}
+{% block title_og %}{{ kabar.title }}{% endblock %}
+{% block description_og %}{{ kabar.body|striptags|slice:":160" }}{% endblock %}
+{% block image_og %}{{ kabar.image.url }}{% endblock %}
+{% block url_og %}/kabar/{{ kabar.id }}{% endblock %}
+{% block title_twitter %}{{ kabar.title }}{% endblock %}
+{% block description_twitter %}{{ kabar.body|striptags|slice:":160" }}{% endblock %}
+{% block image_twitter %}{{ kabar.image.url }}{% endblock %}
+{% block author_twitter %}{{ kabar.author.name }}{% endblock %}
+{% load staticfiles %}
+{% block content %}
+    <div class="row">
+        <article class="news">
+            <div class="col-lg-12" style="margin-bottom: 25px;">
+                <span class="category">{{ kabar.category.name }} - </span>
+                <time datetime="">{{ kabar.get_time }}</time>
+                <span><i class="fa fa-eye"></i> {{ kabar.rating }}</span>
+                <h1>{{ kabar.title }}</h1>
+                <div class="ssk-group" data-title="{{ kabar.title }}" data-text="">
+                    <a href="" class="ssk ssk-facebook"></a>
+                    <a href="" class="ssk ssk-twitter"></a>
+                    <a href="" class="ssk ssk-google-plus"></a>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                {% if kabar.image %}
+                    <div class="articlecover" style="background-image: url('{{ kabar.image.url }}');">
+                    </div>
+                {% endif %}
+                {{ kabar.body|safe }}
+                {% load widget_tweaks %}
+
+                <form method="POST" style="margin-bottom: 25px;">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Атыңыз</label>
+                        {{ form.author|add_class:"form-control"|attr:"required: required" }}
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Пикириңиз</label>
+                        {{ form.text|add_class:"form-control"|attr:"required: required" }}
+                    </div>
+                    <button type="submit" class="save btn btn-default">Сактоо</button>
+                </form>
+                <div class="comments">
+                    {% for comment in comments %}
+                        <h5>{{ comment.author }}</h5>
+                        <h6>
+                            <small>{{ comment.get_time }}</small>
+                        </h6>
+                        <p>{{ comment.text }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-3">
+                {% if ad3 %}
+                    <a href="{{ ad3.link }}" target="_blank">
+                        <img class="img-center img-responsive" src="{{ ad3.image.url }}" alt="">
+                    </a>
+                {% else %}
+                    <div class="ad1">
+                        <div class="text-center">Сиздин жарнамаңыз үчүн (233x330) <br> 0555 03 33 11</div>
+                    </div>
+                {% endif %}
+                <br>
+                {% if ad4 %}
+                    <a href="{{ ad4.link }}" target="_blank">
+                        <img class="img-center img-responsive" src="{{ ad4.image.url }}" alt="">
+                    </a>
+                {% else %}
+                    <div class="ad1">
+                        <div class="text-center">Сиздин жарнамаңыз үчүн (233x330) <br> 0555 03 33 11</div>
+                    </div>
+                {% endif %}
+            </div>
+        </article>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="category-wrapper">
+                    {% for i in other %}
+                        {% if i.is_article %}
+                            <a class="col-md-3" href="/article/{{ i.id }}/">
+                        {% else %}
+                            <a class="col-md-3" href="/kabar/{{ i.id }}/">
+                        {% endif %}
+                    <article>
+                        <div class="cover" style="background-image: url({{ i.image.url }})">
+                        </div>
+                        <div>
+                            <div class="meta">
+                                <time>{{ i.get_time }}</time>
+                                <span><i class="fa fa-eye"></i> {{ i.rating }}</span>
+                            </div>
+                            <h6>
+                                {{ i.title }}
+                            </h6>
+                        </div>
+                    </article>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script>
+        $('iframe[src*="youtube"]').parent().fitVids();
+    </script>
+{% endblock %}

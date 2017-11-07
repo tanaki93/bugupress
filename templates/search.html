@@ -1,0 +1,90 @@
+{% extends 'index.html' %}
+{% block title %}Жаңылык жаз{% endblock %}
+{% load staticfiles %}
+{% block content %}
+    {% load widget_tweaks %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Издөө</h1>
+            <form method="POST" action="/search/" class="post-form">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Издөө</button>
+                      </span>
+                </div><!-- /input-group -->
+            </form>
+            <br>
+        </div>
+        <div class="col-xs-12">
+            {% if inplace %}
+
+                <h1>{{ q }}</h1>
+                <div class="row">
+                    <div class="category-wrapper">
+                        {% for j in inplace %}
+                            {% if j.is_article == True %}
+                                <a class="col-lg-3 col-md-3 col-sm-6 col-xs-12" href="/article/{{ j.id }}/">
+                                    <article>
+                                        {% if j.image %}
+                                            <div class="cover" style="background-image: url({{ j.image.url }})">
+                                            </div>
+                                        {% endif %}
+
+                                        <div>
+                                            <h6>
+                                                {{ j.title }}
+                                            </h6>
+                                            <span>{{ j.category }} - <time>{{ j.date }}</time></span>
+
+                                        </div>
+                                    </article>
+                                </a>
+                            {% elif j.is_opinion == True %}
+                                <a class="col-lg-3 col-md-3 col-sm-6 col-xs-12" href="opinion/{{ j.id }}">
+                                    <article class="opinion">
+                                        <div class="opinion-man">
+                                            <div class="face"
+                                                 style="background-image: url('{{ j.author.image.url }}')">
+                                            </div>
+                                            <h6>
+                                                {{ j.author }}
+                                                <br>
+                                                <small>{{ j.author.about }}</small>
+                                            </h6>
+                                        </div>
+                                        <p>{{ j.title|safe }}</p>
+                                        <span>{{ j.category }} - <time>{{ j.date }}</time></span>
+                                    </article>
+                                </a>
+                            {% else %}
+                                <a class="col-lg-3 col-md-3 col-sm-6 col-xs-12" href="/kabar/{{ j.id }}/">
+                                    <article>
+                                        <div>
+                                            <span><time>{{ j.get_date }}</time></span>
+                                            <h6>
+                                                {{ j.title }}
+                                            </h6>
+                                        </div>
+                                    </article>
+                                </a>
+                            {% endif %}
+
+                        {% endfor %}
+                        {% else %}
+                        <h1 style="color: #e74c3c">{{ q }} ЖӨНҮНДӨ ЭЧТЕКЕ ЖОК</h1>
+
+
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+
+{% endblock %}
+{% block script %}
+{% endblock %}

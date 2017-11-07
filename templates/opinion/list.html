@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% block title %}Список {% endblock %}
+{% load staticfiles %}
+{% block content %}
+    <main class="container-fluid">
+        <div class="row">
+            <br>
+            <a href="/opinion/add/" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Новая запись</a>
+            <table class="table table-responsive">
+                <thead>
+                <tr>
+                    <th>Заголовок</th>
+                    <th>Дата создания</th>
+                    <th>Действие</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for l in list %}
+                    <tr>
+                        <td>{{ l.title }}</td>
+                        <td>{{ l.date }}</td>
+                        <td>
+                            <a href="/opinion/delete/{{ l.id }}/" class="btn btn-xs btn-danger">Удалить</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+    </main>
+{% endblock %}
